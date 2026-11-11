@@ -7,8 +7,8 @@ class Program
         // Gestion pedidos e inventario
         // Variables por cliente
         int operacionesRealizadas = 0;
-        double totalIngresos = 0;
-        double operacionMasCara=0;
+        decimal totalIngresos = 0;
+        decimal operacionMasCara=0;
         string ClienteMasGasto="";
         //varable de opcion
         int opcion = 0;
@@ -43,7 +43,7 @@ class Program
                 //Fase 2: Seleccion de productos
                 int eleccionProducto = 0;
                 string producto;
-                double precioNormal = 0;
+                decimal precioNormal = 0;
                 do
                 {
                     Console.WriteLine();
@@ -61,15 +61,15 @@ class Program
                 if (eleccionProducto == 1)
                 {
                     producto = "Procesador";
-                    precioNormal = 250;
+                    precioNormal = 250m;
                 }else if (eleccionProducto == 2)
                 {
                     producto = "Tarjeta Grafica";
-                    precioNormal = 400;
+                    precioNormal = 400m;
                 } else
                 {
                     producto = "Memoria RAM(8gb)";
-                    precioNormal = 150;
+                    precioNormal = 150m;
                 }
                 //Fase 3: Servicios adicionales
                 bool servicioInstalacion = false;
@@ -78,7 +78,7 @@ class Program
 
                 int opcionServicio;
                 int totalServicios = 0;
-                double precioServicios = 0;
+                decimal precioServicios = 0;
 
                 do
                 {
@@ -101,7 +101,7 @@ class Program
                             {
                                 servicioInstalacion = true;
                                 totalServicios++;
-                                precioServicios += 5;
+                                precioServicios += 5m;
                                 Console.WriteLine("Servicio de instalacion añadido");
                             }
                             else
@@ -114,7 +114,7 @@ class Program
                             {
                                 servicioGarantia = true;
                                 totalServicios++;
-                                precioServicios += 30;
+                                precioServicios += 30m;
                                 Console.WriteLine("Servicio de garantia añadido");
                             }
                             else
@@ -127,7 +127,7 @@ class Program
                             {
                                 servicioRevision = true;
                                 totalServicios++;
-                                precioServicios += 50;
+                                precioServicios += 50m;
                                 Console.WriteLine("Servicio de revision añadido");
                             }
                             else
@@ -147,7 +147,7 @@ class Program
                 int opcionEntrega;
                 string formaEntrega;
                 string direccionEntrega = "";
-                double precioReparto = 0;
+                decimal precioReparto = 0;
                 do
                 {
                     Console.WriteLine();
@@ -167,7 +167,7 @@ class Program
                 } else
                 {
                     formaEntrega = "Envio a domicilio";
-                    precioReparto = 5;
+                    precioReparto = 5m;
                 }
                 do
                 {
@@ -179,19 +179,33 @@ class Program
                     }
                 }while (direccionEntrega.Trim() == "");
                 //Fase 5: Resumen de la compra + Descuento
-                double subPrecioTotal = precioNormal + precioServicios;
-                double descuento = 0;
+                decimal subPrecioTotal = precioNormal + precioServicios;
+                decimal descuento = 0;
                 if (totalServicios == 3)
                 {
-                    descuento = subPrecioTotal * 0.10;
+                    descuento = subPrecioTotal * 0.10m;
                 }
-                double precioTotal = subPrecioTotal - descuento + precioReparto;
+                decimal precioTotal = subPrecioTotal - descuento + precioReparto;
                 Console.WriteLine();
                 Console.WriteLine("---Resumen de la compra---");
                 Console.WriteLine("Componente seleccionado + servicios: " + subPrecioTotal.ToString("F2") + "€");
                 Console.WriteLine("Descuento aplicado: " + descuento.ToString("F2") + "€");
                 Console.WriteLine("Precio Reparto: " + precioReparto.ToString("F2") + "€");
                 Console.WriteLine("Precio total: " + precioTotal.ToString("F2") + "€");
+                //Fase 6: Cobro de la compra
+                decimal dineroRecibido = 0;
+                do
+                {
+                    Console.Write("Dinero recibido del cliente:");
+                    dineroRecibido = Convert.ToDecimal(Console.ReadLine()!);
+                    if (dineroRecibido < precioTotal)
+                    {
+                        Console.WriteLine("El dinero recibido es menor al precio total, Te faltan: " + (precioTotal - dineroRecibido).ToString("F2") + "€");
+                        Console.Write("Por favor, ingrese más dinero: ");
+                    }
+                } while (dineroRecibido < precioTotal);
+                decimal cambio = dineroRecibido - precioTotal;
+                
             }
         } while (opcion !=3);
     }
