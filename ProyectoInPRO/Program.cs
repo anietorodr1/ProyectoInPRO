@@ -168,8 +168,7 @@ class Program
                 {
                     formaEntrega = "Envio a domicilio";
                     precioReparto = 5m;
-                }
-                do
+                    do
                 {
                     Console.Write("ingrese la direccion de entrega: ");
                     direccionEntrega = Console.ReadLine()??"";
@@ -178,6 +177,7 @@ class Program
                         Console.WriteLine("La direccion no puede estar vacia, intenta de nuevo");
                     }
                 }while (direccionEntrega.Trim() == "");
+                }
                 //Fase 5: Resumen de la compra + Descuento
                 decimal subPrecioTotal = precioNormal + precioServicios;
                 decimal descuento = 0;
