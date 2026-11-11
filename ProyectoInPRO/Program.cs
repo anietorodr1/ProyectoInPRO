@@ -10,10 +10,6 @@ class Program
         double totalIngresos = 0;
         double operacionMasCara=0;
         string ClienteMasGasto="";
-        //Variables de stock
-        int stockProcesadores = 4;
-        int stockGraficas= 3;
-        int stockRam = 5;
         //varable de opcion
         int opcion = 0;
 
@@ -32,7 +28,7 @@ class Program
             if (opcion == 1)
             {
                 //FASE 1: Datos del cliente
-                Console.WriteLine("");
+                Console.WriteLine();
                 Console.WriteLine("---Nuevo pedido---");
                 string nombreCliente = "";
                 do
@@ -50,7 +46,7 @@ class Program
                 double precioNormal = 0;
                 do
                 {
-                    Console.WriteLine("");
+                    Console.WriteLine();
                     Console.WriteLine("---Selccion de Productos---");
                     Console.WriteLine("1. Procesador: 250€");
                     Console.WriteLine("2. Tarjeta Grafica: 400€");
@@ -75,7 +71,78 @@ class Program
                     producto = "Memoria RAM(8gb)";
                     precioNormal = 150;
                 }
-                
+                //Fase 3: Servicios adicionales
+                bool servicioInstalacion = false;
+                bool servicioGarantia = false;
+                bool servicioTransporte = false;
+
+                int opcionServicio;
+                int totalServicios = 0;
+                double precioServicios = 0;
+
+                do
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("---Servicios Adicionales---");
+                    Console.WriteLine("1. Instalacion: 5€");
+                    Console.WriteLine("2. garantia: 30€");
+                    Console.WriteLine("3. Transporte: 10€");
+                    Console.WriteLine("4. Finalizar eleccion");
+                    Console.WriteLine();
+                    Console.WriteLine("Servicios seleccionados: " + totalServicios);
+                    Console.WriteLine("Precio de la compra: " + (precioNormal + precioServicios).ToString("F2") + "€");
+                    Console.WriteLine("Precio Servicios seleccionados: " + precioServicios + "€");
+                    Console.Write("Selecciona un servicio: ");
+                    opcionServicio = int.Parse(Console.ReadLine()!);
+                    switch (opcionServicio)
+                    {
+                        case 1:
+                            if (!servicioInstalacion)
+                            {
+                                servicioInstalacion = true;
+                                totalServicios++;
+                                precioServicios += 5;
+                                Console.WriteLine("Servicio de instalacion añadido");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Ya has seleccionado este servicio");
+                            }
+                            break;
+                        case 2:
+                            if (!servicioGarantia)
+                            {
+                                servicioGarantia = true;
+                                totalServicios++;
+                                precioServicios += 30;
+                                Console.WriteLine("Servicio de garantia añadido");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Ya has seleccionado este servicio");
+                            }
+                            break;
+                        case 3:
+                            if (!servicioTransporte)
+                            {
+                                servicioTransporte = true;
+                                totalServicios++;
+                                precioServicios += 10;
+                                Console.WriteLine("Servicio de transporte añadido");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Ya has seleccionado este servicio");
+                            }
+                            break;
+                        default:
+                            if (opcionServicio != 4)
+                            {
+                                Console.WriteLine("Opcion no valida, intenta de nuevo");
+                            }
+                            break;
+                    }
+                } while (opcionServicio != 4);
             }
         } while (opcion !=3);
     }
