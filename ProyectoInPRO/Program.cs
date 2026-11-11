@@ -9,7 +9,7 @@ class Program
         int operacionesRealizadas = 0;
         decimal totalIngresos = 0;
         decimal operacionMasCara=0;
-        string ClienteMasGasto="";
+        string clienteMasGasto="";
         //varable de opcion
         int opcion = 0;
 
@@ -211,9 +211,82 @@ class Program
                 if (operacionesRealizadas == 1 || precioTotal > operacionMasCara)
                 {
                     operacionMasCara = precioTotal;
-                    ClienteMasGasto = nombreCliente;
+                    clienteMasGasto = nombreCliente;
                 }
-                
+                //Fase 8: Ticket de compra
+                Console.WriteLine();
+                Console.WriteLine("-----------------------------------------");
+                Console.WriteLine("            STOCK_PC - TICKET            ");
+                Console.WriteLine("-----------------------------------------");
+                Console.WriteLine("Pedido numero: " + operacionesRealizadas);
+                Console.WriteLine("Cliente: " + nombreCliente);
+                Console.WriteLine("Producto: " + producto);
+                Console.WriteLine("Servicios adicionales: ");
+                if (totalServicios == 0)
+                {
+                    Console.WriteLine("Ninguno");
+                }
+                else
+                {
+                    if (servicioInstalacion)
+                    {
+                        Console.WriteLine(" - Instalacion");
+                    }
+                    if (servicioGarantia)
+                    {
+                        Console.WriteLine(" - Garantia");
+                    }
+                    if (servicioRevision)
+                    {
+                        Console.WriteLine(" - Revision");
+                    }
+                }
+                Console.WriteLine("Forma de entrega: " + formaEntrega);
+                if (opcionEntrega == 2)
+                {
+                    Console.WriteLine("Direccion de entrega: " + direccionEntrega);
+                }
+                Console.WriteLine("-----------------------------------------");
+                Console.WriteLine("Precio inicial: " + precioNormal.ToString("F2") + "€");
+                Console.WriteLine("Precio servicios: " + precioServicios.ToString("F2") + "€");
+                Console.WriteLine("Precio subtotal: " + subPrecioTotal.ToString("F2") + "€");
+                Console.WriteLine("Descuento aplicado: " + descuento.ToString("F2") + "€");
+                Console.WriteLine("Precio reparto: " + precioReparto.ToString("F2") + "€");
+                Console.WriteLine("Total: " + precioTotal.ToString("F2") + "€");
+                Console.WriteLine("Dinero recibido: " + dineroRecibido.ToString("F2") + "€");
+                Console.WriteLine("Cambio: " + cambio.ToString("F2") + "€");
+                Console.WriteLine("-----------------------------------------");
+                Console.WriteLine("¡Gracias por su compra, vuelva pronto!");
+            } else if (opcion == 2)
+            {
+                Console.WriteLine();
+                Console.WriteLine("-----------------------------------");
+                Console.WriteLine("         Actividad Anterior");
+                Console.WriteLine("-----------------------------------");
+                if (operacionesRealizadas == 0)
+                {
+                    Console.WriteLine("No hay pedidos realizados.");
+                }
+                else
+                {
+                    decimal promedioIngresos = totalIngresos / operacionesRealizadas;
+                    Console.WriteLine("Pedidos realizados: " + operacionesRealizadas);
+                    Console.WriteLine("Total ingresos: " + totalIngresos.ToString("F2") + "€");
+                    Console.WriteLine ("Promedio de ingresos por pedido: " + promedioIngresos.ToString("F2") + "€");
+                    Console.WriteLine("Pedido mas caro; " + operacionMasCara.ToString("F2"));
+                    Console.WriteLine("Cliente que mas gasto(En un pedido): " + clienteMasGasto);
+                }
+            } else if (opcion == 3)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Saliendo de Stock PC....");
+                Console.WriteLine("Pedidos realizados: " + operacionesRealizadas);
+                Console.WriteLine("Total ingresos: " + totalIngresos.ToString("F2") + "€");
+                Console.WriteLine("¡Hasta luego!");
+            }
+            else
+            {
+                Console.WriteLine("Opcion no valida, intenta de nuevo(1, 2 o 3)");
             }
         } while (opcion !=3);
     }
