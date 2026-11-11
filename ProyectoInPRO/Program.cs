@@ -205,6 +205,14 @@ class Program
                     }
                 } while (dineroRecibido < precioTotal);
                 decimal cambio = dineroRecibido - precioTotal;
+                //Fase 7: Actualizacion del registro
+                operacionesRealizadas++;
+                totalIngresos += precioTotal;
+                if (operacionesRealizadas == 1 || precioTotal > operacionMasCara)
+                {
+                    operacionMasCara = precioTotal;
+                    ClienteMasGasto = nombreCliente;
+                }
                 
             }
         } while (opcion !=3);
