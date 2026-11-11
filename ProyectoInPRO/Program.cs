@@ -51,7 +51,7 @@ class Program
                     Console.WriteLine("1. Procesador: 250€");
                     Console.WriteLine("2. Tarjeta Grafica: 400€");
                     Console.WriteLine("3. Memoria RAM(8gb): 150€");
-                    Console.WriteLine("selecciona un producto:");
+                    Console.WriteLine("selecciona un producto: ");
                     eleccionProducto = int.Parse(Console.ReadLine()!);
                     if (eleccionProducto < 1 || eleccionProducto > 3)
                     {
@@ -196,12 +196,12 @@ class Program
                 decimal dineroRecibido = 0;
                 do
                 {
-                    Console.WriteLine("Dinero recibido del cliente:");
+                    Console.WriteLine("Dinero recibido del cliente: ");
                     dineroRecibido = Convert.ToDecimal(Console.ReadLine()!);
                     if (dineroRecibido < precioTotal)
                     {
                         Console.WriteLine("El dinero recibido es menor al precio total, Te faltan: " + (precioTotal - dineroRecibido).ToString("F2") + "€");
-                        Console.WriteLine("Por favor, ingrese más dinero: ");
+                        Console.WriteLine("Por favor, ingrese más dinero");
                     }
                 } while (dineroRecibido < precioTotal);
                 decimal cambio = dineroRecibido - precioTotal;
