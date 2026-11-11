@@ -74,7 +74,7 @@ class Program
                 //Fase 3: Servicios adicionales
                 bool servicioInstalacion = false;
                 bool servicioGarantia = false;
-                bool servicioTransporte = false;
+                bool servicioRevision = false;
 
                 int opcionServicio;
                 int totalServicios = 0;
@@ -86,7 +86,7 @@ class Program
                     Console.WriteLine("---Servicios Adicionales---");
                     Console.WriteLine("1. Instalacion: 5€");
                     Console.WriteLine("2. garantia: 30€");
-                    Console.WriteLine("3. Transporte: 10€");
+                    Console.WriteLine("3. revision: 50€");
                     Console.WriteLine("4. Finalizar eleccion");
                     Console.WriteLine();
                     Console.WriteLine("Servicios seleccionados: " + totalServicios);
@@ -123,12 +123,12 @@ class Program
                             }
                             break;
                         case 3:
-                            if (!servicioTransporte)
+                            if (!servicioRevision)
                             {
-                                servicioTransporte = true;
+                                servicioRevision = true;
                                 totalServicios++;
-                                precioServicios += 10;
-                                Console.WriteLine("Servicio de transporte añadido");
+                                precioServicios += 50;
+                                Console.WriteLine("Servicio de revision añadido");
                             }
                             else
                             {
@@ -178,7 +178,20 @@ class Program
                         Console.WriteLine("La direccion no puede estar vacia, intenta de nuevo");
                     }
                 }while (direccionEntrega.Trim() == "");
-                
+                //Fase 5: Resumen de la compra + Descuento
+                double subPrecioTotal = precioNormal + precioServicios;
+                double descuento = 0;
+                if (totalServicios == 3)
+                {
+                    descuento = subPrecioTotal * 0.10;
+                }
+                double precioTotal = subPrecioTotal - descuento + precioReparto;
+                Console.WriteLine();
+                Console.WriteLine("---Resumen de la compra---");
+                Console.WriteLine("Componente seleccionado + servicios: " + subPrecioTotal.ToString("F2") + "€");
+                Console.WriteLine("Descuento aplicado: " + descuento.ToString("F2") + "€");
+                Console.WriteLine("Precio Reparto: " + precioReparto.ToString("F2") + "€");
+                Console.WriteLine("Precio total: " + precioTotal.ToString("F2") + "€");
             }
         } while (opcion !=3);
     }
