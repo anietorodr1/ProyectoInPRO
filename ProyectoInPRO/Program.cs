@@ -143,6 +143,42 @@ class Program
                             break;
                     }
                 } while (opcionServicio != 4);
+                //Fase 4: Entrega
+                int opcionEntrega;
+                string formaEntrega;
+                string direccionEntrega = "";
+                double precioReparto = 0;
+                do
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("---Entrega---");
+                    Console.WriteLine("1. Recoger en tienda: 0€");
+                    Console.WriteLine("2. Envio a domicilio: 5€");
+                    Console.Write("eligue una opcion: ");
+                    opcionEntrega = int.Parse(Console.ReadLine()!);
+                    if (opcionEntrega < 1 || opcionEntrega > 2)
+                    {
+                        Console.WriteLine("Opcion no valida, intenta de nuevo");
+                    }
+                }while (opcionEntrega < 1 || opcionEntrega > 2);
+                if (opcionEntrega == 1)
+                {
+                    formaEntrega = "Recoger en tienda";
+                } else
+                {
+                    formaEntrega = "Envio a domicilio";
+                    precioReparto = 5;
+                }
+                do
+                {
+                    Console.Write("ingrese la direccion de entrega: ");
+                    direccionEntrega = Console.ReadLine()??"";
+                    if (direccionEntrega.Trim() == "")
+                    {
+                        Console.WriteLine("La direccion no puede estar vacia, intenta de nuevo");
+                    }
+                }while (direccionEntrega.Trim() == "");
+                
             }
         } while (opcion !=3);
     }
