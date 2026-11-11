@@ -4,7 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Gestion pedidos e inventario
+        // Gestion pedidos
         // Variables por cliente
         int operacionesRealizadas = 0;
         decimal totalIngresos = 0;
