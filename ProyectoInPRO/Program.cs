@@ -196,12 +196,12 @@ class Program
                 decimal dineroRecibido = 0;
                 do
                 {
-                    Console.Write("Dinero recibido del cliente:");
+                    Console.WriteLine("Dinero recibido del cliente:");
                     dineroRecibido = Convert.ToDecimal(Console.ReadLine()!);
                     if (dineroRecibido < precioTotal)
                     {
                         Console.WriteLine("El dinero recibido es menor al precio total, Te faltan: " + (precioTotal - dineroRecibido).ToString("F2") + "€");
-                        Console.Write("Por favor, ingrese más dinero: ");
+                        Console.WriteLine("Por favor, ingrese más dinero: ");
                     }
                 } while (dineroRecibido < precioTotal);
                 decimal cambio = dineroRecibido - precioTotal;
